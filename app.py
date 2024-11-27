@@ -100,12 +100,13 @@ def detect_angle_speed(path, rpm_or_speed):
       angle = (theta * 180 / np.pi) - 90
       if angle < -20:
         angle = -20
+      st.image( image)
       # st.write(f"The angle of the speedometer needle is {angle:.2f} degrees from the horizontal.")
-      if rpm_or_speed == "speed":
+      if rpm_or_speed == "Speedometer":
         st.write(f"The speed of the speedometer is {angle + 20:.2f} kmph")
       else:
         st.write(f"The RPM of the engine is {(angle  + 22)/27.68 :.2f} X 1000 RPM")
-      st.image( image)
+
   else:
     alt_speed(path, rpm_or_speed)
 
@@ -320,6 +321,7 @@ def main():
                                 detect_angle_rpm(imgCrop, "RPM")
 
                         elif r[2] == "Illumination":
+                            st.image(imgCrop, caption=f"Cropped ROI: {r[3]}", use_column_width=True)
                             imgHSV = cv2.cvtColor(imgCrop, cv2.COLOR_BGR2HSV)
                             lower_green = np.array([40, 50, 50])
                             upper_green = np.array([80, 255, 255])
