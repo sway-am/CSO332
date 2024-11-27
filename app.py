@@ -247,7 +247,7 @@ def detect_angle_temp_and_fuel(path, fuel):
   point2 = (int(x + vx * width), int(y + vy * width))
   output_image = image.copy()
   cv2.line(output_image, point1, point2, (0, 255, 0), 2)
-  st.image(output_image, caption=f"Detected needle with angle: {angle_degrees:.2f} degrees", channels="BGR")
+  st.image(output_image)
 
   # st.write the angle
   if fuel == "fuel":
