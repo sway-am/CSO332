@@ -263,9 +263,9 @@ def detect_angle_temp_and_fuel(path, fuel):
 roi = [[(494, 12), (827, 230), 'Dial', 'Speedometer'], [(600, 199), (708, 285), 'Dial', 'Fuel Guage'], [(9, 11), (328, 241), 'Dial', 'RPM Gauge'], [(115, 203), (225, 282), 'Dial', 'Engine Temperature'], [(388, 159), (484, 186), 'text', 'Average Fuel Economy'], [(407, 199), (477, 224), 'text', 'Range'], [(425, 245), (485, 264), 'text', 'Distance Travelled'], [(219, 238), (259, 264), 'Illumination', 'Upper dipper']]
 
 def main():
-    st.title("Image Processing with AKAZE and EasyOCR")
+    st.title("A Robust method for  Car Dash Data Extraction")
 
-    uploaded_query_image = st.file_uploader("Upload Query Image", type=["jpg", "png", "jpeg"])
+    uploaded_query_image = st.file_uploader("Main reference", type=["jpg", "png", "jpeg"])
     uploaded_images = st.file_uploader("Upload Images to Compare", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
 
     if uploaded_query_image and uploaded_images:
