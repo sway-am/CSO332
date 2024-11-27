@@ -43,12 +43,13 @@ def detect_angle_rpm(path, rpm_or_speed):
               max_length = length
               best_line = (rho, theta)
 
-  st.image( image)
+  
   if best_line:
       _, theta = best_line
       angle = (theta * 180 / np.pi) - 90
       if angle < -20:
         angle = -20
+      st.image( image)
       # st.write(f"The angle of the speedometer needle is {angle:.2f} degrees from the horizontal.")
       if rpm_or_speed == "speed":
         st.write(f"The speed of the speedometer is {angle + 20:.2f} kmph")
@@ -94,7 +95,7 @@ def detect_angle_speed(path, rpm_or_speed):
               max_length = length
               best_line = (rho, theta)
 
-  st.image( image)
+  
   if best_line:
       _, theta = best_line
       angle = (theta * 180 / np.pi) - 90
@@ -102,6 +103,7 @@ def detect_angle_speed(path, rpm_or_speed):
         angle = -20
       
       # st.write(f"The angle of the speedometer needle is {angle:.2f} degrees from the horizontal.")
+      st.image( image)
       if rpm_or_speed == "Speedometer":
         st.write(f"The speed of the speedometer is {angle + 20:.2f} kmph")
       else:
@@ -195,7 +197,7 @@ def alt_speed(path, speed):
   angle_degrees = np.degrees(angle_radians)
 
   # st.write the angle
-  if speed == "speed":
+  if speed == "Speedometer":
     st.write(f"The speed of the speedometer is {angle_degrees + 20:.2f} kmph")
   else:
     st.write(f"The RPM of the engine is {(angle_degrees  + 22)/27.68 :.2f} X 1000 RPM")
