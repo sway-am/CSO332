@@ -242,12 +242,19 @@ def detect_angle_temp_and_fuel(path, fuel):
   angle_radians = np.arctan2(vy, vx)
   angle_degrees = np.degrees(angle_radians)
 
+  height, width = image.shape[:2]
+  point1 = (int(x - vx * width), int(y - vy * width))
+  point2 = (int(x + vx * width), int(y + vy * width))
+  output_image = image.copy()
+  cv2.line(output_image, point1, point2, (0, 255, 0), 2)
+  st.image(output_image, caption=f"Detected needle with angle: {angle_degrees:.2f} degrees", channels="BGR")
+
   # st.write the angle
   if fuel == "fuel":
     st.write(f"Angle of the fuel gauge needle: {angle_degrees:.2f} degrees")
   else:
     st.write(f"Angle of the temperature gauge needle: {angle_degrees:.2f} degrees")
-
+  
 
 
 roi = [[(494, 12), (827, 230), 'Dial', 'Speedometer'], [(600, 199), (708, 285), 'Dial', 'Fuel Guage'], [(9, 11), (328, 241), 'Dial', 'RPM Gauge'], [(115, 203), (225, 282), 'Dial', 'Engine Temperature'], [(388, 159), (484, 186), 'text', 'Average Fuel Economy'], [(407, 199), (477, 224), 'text', 'Range'], [(425, 245), (485, 264), 'text', 'Distance Travelled'], [(219, 238), (259, 264), 'Illumination', 'Upper dipper']]
@@ -295,7 +302,7 @@ def main():
 
                     for r in roi:
                         imgCrop = imgScan[r[0][1]:r[1][1], r[0][0]:r[1][0]]
-                        st.image(imgCrop, caption=f"Cropped ROI: {r[3]}", use_column_width=True)
+                        #st.image(imgCrop, caption=f"Cropped ROI: {r[3]}", use_column_width=True)
 
                         if r[2] == "text":
                             results = reader.readtext(imgCrop)
